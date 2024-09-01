@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main-content %}
+<!-- Side Panel Start -->
+{% include 'required/side-panel.html' %}
+{% block side-panel %}{% endblock %}
+<!-- Side Panel End -->
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+    {% include 'required/navbar.html' %}
+    {% block navbar %}{% endblock %}
+    <!-- End Navbar -->
+    {% block content %}
+    {% endblock %}
+</main>
+{% endblock %}
+{% block dashboard-js %}
+<script src="{% static 'js/dashboard-perfectScrollBar.js' %}"></script>
+{% endblock %}

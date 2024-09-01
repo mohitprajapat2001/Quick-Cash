@@ -1,0 +1,172 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}Transactions{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">Banking Transactions</h6>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table accordion align-items-center mb-0 table-hover">
+                            <thead>
+                                <tr>
+                                    <th
+                                        class="text-uppercase text-secondary align-middle text-xs font-weight-bolder opacity-8 text-center">
+                                        ID
+                                    </th>
+                                    <th
+                                        class="text-uppercase text-secondary align-middle text-xs font-weight-bolder opacity-8">
+                                        Customer</th>
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-center align-middle text-xs font-weight-bolder opacity-8">
+                                        Transaction Type</th>
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-center align-middle text-xs font-weight-bolder opacity-8">
+                                        Amount</th>
+                                    <th class="text-secondary text-center align-middle opacity-7">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for transaction in transactions %}
+                                <tr>
+                                    <td>
+                                        <p class="font-weight-bold mb-0 text-center">{{forloop.counter}}</p>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div>
+                                                <img src="{{transaction.customer.profile.url}}"
+                                                    class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm text-capitalize">
+                                                    {{transaction.customer.first_name}}
+                                                    {{transaction.customer.last_name}}</h6>
+                                                <p class="text-xs text-secondary mb-0">{{transaction.customer.email}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <span
+                                            class="badge badge-sm bg-gradient-success">{{transaction.transaction_type}}</span>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <span
+                                            class="text-secondary text-xs font-weight-bold">{{transaction.amount}}</span>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <button class="btn btn-outline-primary btn-sm mb-0 me-3"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#{{transaction.id}}">Details</button>
+                                    </td>
+                                </tr>
+                                <tr id="{{transaction.id}}" class="accordion-collapse collapse bg-gray-100"
+                                    data-bs-parent="#transactionDetailAccordion">
+                                    <td colspan="5">
+                                        <div class="accordion-body">
+                                            <ul class="list-group">
+                                                <li
+                                                    class="list-group-item bg-transparent border-0 d-flex border-radius-lg">
+                                                    <div class="d-flex flex-column">
+                                                        <h6 class="mb-3 text-sm text-capitalize">
+                                                            {{transaction.customer}} Transaction Details</h6>
+                                                        <span class="mb-2 text-xs">Transaction ID: <span
+                                                                class="text-dark font-weight-bold ms-sm-2">{{transaction.transaction_id}}</span></span>
+                                                        <span class="mb-2 text-xs">Transaction Amount: <span
+                                                                class="text-dark ms-sm-2 font-weight-bold">{{transaction.amount}}</span></span>
+                                                        <span class="mb-2 text-xs">Transaction Type: <span
+                                                                class="text-dark ms-sm-2 font-weight-bold">{{transaction.transaction_type}}</span></span>
+                                                        <span class="mb-2 text-xs">Transaction Remark: <span
+                                                                class="text-dark ms-sm-2 font-weight-bold">{{transaction.remark}}</span></span>
+                                                        <span class="mb-2 text-xs">Transaction Date: <span
+                                                                class="text-dark ms-sm-2 font-weight-bold">{{transaction.created}}</span></span>
+                                                    </div>
+                                                    <div class="ms-auto text-end">
+                                                        <button
+                                                            class="btn btn-outline-primary text-danger text-gradient mb-0 btn-sm"><i
+                                                                class="material-icons text-sm me-2">print</i>Print</button>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer p-0 position-relative mb-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-secondary shadow-primary border-radius-lg pt-4 pb-3">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center cursor-pointer">
+                                {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=1" aria-label="First">
+                                        <span aria-hidden="true">&laquo;&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+                                        aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" aria-label="First">
+                                        <span aria-hidden="true">&laquo;&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item disabled">
+                                    <a class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                {% endif %}
+                                <li class="px-1">
+                                    <span class="page-link border-radius-lg active">
+                                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                                    </span>
+                                </li>
+                                {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}"
+                                        aria-label="Last">
+                                        <span aria-hidden="true">&raquo;&raquo;</span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled">
+                                    <a class="page-link" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item disabled">
+                                    <a class="page-link" aria-label="Last">
+                                        <span aria-hidden="true">&raquo;&raquo;</span>
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

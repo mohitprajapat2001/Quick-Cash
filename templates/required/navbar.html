@@ -1,0 +1,37 @@
+{% load static %}
+
+{% block navbar %}
+<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl text-capitalize"
+    data-scroll="true">
+    <nav class="col-auto my-auto">
+        <div class="h-100">
+            <h5 class="mb-1">
+                Banking Dashboard
+            </h5>
+            <p class="mb-0 font-weight-normal text-sm">
+                Welcome Back, {{request.user}}!
+            </p>
+        </div>
+    </nav>
+    <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group input-group-outline">
+                <label class="form-label">Ctrl + / to Search</label>
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <ul class="navbar-nav  justify-content-end">
+            <li class="nav-item d-flex align-items-center">
+                <a class="btn btn-outline-primary btn-sm mb-0 me-3" role="button" href="">Settings
+                </a>
+            </li>
+            <li class="mt-2">
+                <a class="github-button" href="https://github.com/mohitprajapat2001" data-icon="octicon-star"
+                    data-size="large" data-show-count="true"
+                    aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+</nav>
+{% endblock %}

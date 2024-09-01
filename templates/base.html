@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}">
+    <title>
+        {% block title %}QuickCash{% endblock %}
+    </title>
+    <!-- CSS, Fonts and icons Start -->
+    {% include 'required/css.html' %}
+    {% block css %}{% endblock %}
+    <!-- CSS, Fonts and icons End -->
+
+</head>
+
+<body class="main g-sidenav-show bg-gray-200">
+    {% block main-content %}
+    {% endblock %}
+    <!-- Block Error Message Start -->
+    {% include "required/error.html" %}
+    {% block error %}{% endblock %}
+    <!-- Block Error Message End -->
+</body>
+{% include 'required/js.html' %}
+{% block js %}{% endblock %}
+{% block dashboard-js %}{% endblock %}
+
+</html>

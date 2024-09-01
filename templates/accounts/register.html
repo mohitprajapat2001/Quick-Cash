@@ -1,0 +1,67 @@
+{% extends "accounts/accounts-base.html" %}
+{% load static %}
+{% load static %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<main class="main-content border-radius-lg">
+    <div class="page-header align-items-start min-vh-100"
+        style="background-image: url('https://go.cynet.com/hubfs/Holidays%20Season.gif');">
+        <span class="mask bg-gradient-dark opacity-6"></span>
+        <div class="container my-auto mb-5">
+            <div class="row mt-3 pt-5">
+                <div class="col-lg-4 col-md-12 mx-auto">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h4 class="font-weight-bolder">Sign Up</h4>
+                            <p class="mb-0">Enter your email and password to register</p>
+                        </div>
+                        <div class="card-body">
+                            <form role="form" class="needs-validation" novalidate method="post">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                <div class="input-group input-group-outline my-3">
+                                    <label for="{{field.id_for_label}}" class="form-label">{{field.label}}</label>
+                                    {{field}}
+                                    {% if field.help_text %}
+                                    <div class="invalid-feedback">
+                                        Username is required Field
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Choose Password</label>
+                                    <input type="password" name="password1" class="form-control">
+                                </div>
+                                <div class="input-group input-group-outline mb-3">
+                                    <label class="form-label">Confirm Password</label>
+                                    <input type="password" name="password2" class="form-control">
+                                </div>
+                                <div class="form-check form-check-info text-start ps-0">
+                                    <input class="form-check-input" type="checkbox" value="true" name="termsCondition">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms
+                                            and Conditions</a>
+                                    </label>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit"
+                                        class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign
+                                        Up</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                            <p class="mb-2 text-sm mx-auto">
+                                Already have an account?
+                                <a href="../pages/sign-in.html" class="text-primary text-gradient font-weight-bold">Sign
+                                    in</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
