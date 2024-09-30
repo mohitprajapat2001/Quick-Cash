@@ -1,0 +1,31 @@
+<div class="chart">
+    <canvas id="cashOutChart" class="chart-canvas" height="170"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const cashOut = document.getElementById('cashOutChart');
+
+    new Chart(cashOut, {
+        type: 'line',
+        data: {
+            labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"],
+            datasets: [{
+                label: "Cash Out",
+                data: [
+                    {% for amount in user.last_7_days_cash_out_report %}
+                    {{ amount }}{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+                ],
+    borderWidth: 1,
+        borderColor: '#fff',
+            backgroundColor: '#9BD0F5',
+            }]
+        },
+    options: {
+        responsive: true,
+            color: "#000"
+    }
+    });
+
+</script>

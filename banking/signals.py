@@ -2,11 +2,11 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from banking.models import Transaction, Customer, Account
 from accounts.models import Customer
-from banking.utils import (
+from banking.utils.utils import (
     generate_account_number,
     update_account_balance_post_transaction,
 )
-from banking.constants import NEW_ACCOUNT_REMARK
+from banking.utils.constants import NEW_ACCOUNT_REMARK, CREATE_TEXT
 
 
 @receiver(post_save, sender=Transaction)
@@ -32,5 +32,6 @@ def create_account_details_for_new_user(sender, instance, created, *args, **kwar
         )
         Transaction.objects.create(
             customer=instance,
+            trasaction_type=CREATE_TEXT,
             remark=NEW_ACCOUNT_REMARK.format(customer=instance),
         )

@@ -8,7 +8,7 @@ from django.forms import (
     Select,
     TextInput,
 )
-from banking.bank_choices import TRANSACTION_FORM_CHOICES
+from banking.utils.bank_choices import TRANSACTION_FORM_CHOICES
 
 
 class TransactionForm(Form):

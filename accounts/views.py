@@ -22,6 +22,7 @@ from accounts.forms import CustomerUpdateForm, LoginForm, RegisterForm
 from django.urls import reverse_lazy
 from django.contrib.messages import info
 from django.core.exceptions import ValidationError
+from login_required import login_not_required
 
 
 class ProfileView(UpdateView):
@@ -41,14 +42,13 @@ class ProfileView(UpdateView):
         return Customer.objects.filter(id=self.request.user.pk)
 
 
+@login_not_required
 class LoginView(FormView):
     template_name = LOGIN_TEMPLATE
     form_class = LoginForm
     success_url = DASHBOARD_URL
 
     def form_valid(self, form):
-        print(form.cleaned_data["username"])
-        print(form.cleaned_data["password"])
         user = authenticate(
             username=form.cleaned_data["username"],
             password=form.cleaned_data["password"],
@@ -61,14 +61,7 @@ class LoginView(FormView):
         return super().form_valid(form)
 
 
-class LogoutView(View):
-
-    def get(self, request):
-        logout(request)
-        info(request, LOGOUT_SUCCESS)
-        return redirect(DASHBOARD_URL)
-
-
+@login_not_required
 class RegisterView(FormView):
     template_name = REGISTER_TEMPLATE
     form_class = RegisterForm
@@ -97,3 +90,11 @@ class RegisterView(FormView):
         except ValidationError as ve:
             form.add_error(None, ve)
             return super().form_invalid(form)
+
+
+class LogoutView(View):
+
+    def get(self, request):
+        logout(request)
+        info(request, LOGOUT_SUCCESS)
+        return redirect(DASHBOARD_URL)

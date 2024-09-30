@@ -1,14 +1,11 @@
-from asyncio import constants
-import re
 from django.contrib.messages import info
-from tkinter import E
 from typing import Any
 from django.http import HttpRequest
 from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import redirect, render
 from django.views.generic import ListView, DetailView, FormView, TemplateView
 from requests import get
-from banking.constants import (
+from banking.utils.constants import (
     TRANSACTION_TEMPLATE,
     TRANSACTIONS_CONTEXT_OBJECT_NAME,
     BANKING_TEMPLATE,
@@ -16,7 +13,7 @@ from banking.constants import (
 )
 from banking.models import Transaction
 from banking.forms import TransactionForm, TransferForm
-from banking.utils import (
+from banking.utils.utils import (
     create_new_transaction_credit_debit,
     create_new_transaction_transfer_receive_money,
 )

@@ -11,8 +11,14 @@
             <div class="row mt-3 pt-5">
                 <div class="col-lg-4 col-md-12 mx-auto">
                     <div class="card">
-                        <div class="card-header text-center">
-                            <h4 class="font-weight-bolder">Sign Up</h4>
+                        <div class="card-header text-center mb-0">
+                            <a href="{% url 'index' %}" class="">
+                                <img src="{% static 'img/logo-ct-dark.png' %}" class="img-fluid w-25 mx-auto d-block"
+                                    alt="">
+                            </a>
+                            <p class="font-weight-light lead fs-4 text-center mt-2 mb-0">Sign in to
+                                Quickcash
+                            </p>
                             <p class="mb-0">Enter your email and password to register</p>
                         </div>
                         <div class="card-body">
@@ -54,7 +60,7 @@
                         <div class="card-footer text-center pt-0 px-lg-2 px-1">
                             <p class="mb-2 text-sm mx-auto">
                                 Already have an account?
-                                <a href="../pages/sign-in.html" class="text-primary text-gradient font-weight-bold">Sign
+                                <a href="{% url 'login' %}" class="text-primary text-gradient font-weight-bold">Sign
                                     in</a>
                             </p>
                         </div>

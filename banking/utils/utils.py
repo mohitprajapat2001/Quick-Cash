@@ -1,5 +1,5 @@
 import random
-from banking.constants import (
+from banking.utils.constants import (
     ACCOUNT_NUMBER_END_RANGE,
     ACCOUNT_NUMBER_START_RANGE,
     DEBIT,

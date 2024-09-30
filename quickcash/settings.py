@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 from dotenv import dotenv_values
-from .constants import (
+from .utils.constants import (
     TEMPLATES_BASE_DIR,
     STATIC_URL_NAME,
     STATIC_URL_PATH,
@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "schema_graph",
     "phonenumber_field",
+    "login_required",
 ]
 
 MIDDLEWARE = [
@@ -73,6 +74,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "login_required.middleware.LoginRequiredMiddleware",
 ]
 
 ROOT_URLCONF = "quickcash.urls"

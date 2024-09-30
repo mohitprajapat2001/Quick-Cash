@@ -70,3 +70,9 @@ FORM_CLASS_BASIC = "form-control p-2 border"
 DASHBOARD_REVERSE = "dashboard"
 DASHBOARD_URL = "/dashboard/"
 LOGIN_REVERSE = "login"
+
+# Type Transactions
+DEBIT = "DEBIT"
+CREDIT = "CREDIT"
+TRANSFER = "TRANSFER"
+RECEIVE = "RECEIVE"

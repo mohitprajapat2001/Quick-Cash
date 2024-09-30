@@ -1,7 +1,7 @@
 from django.db import models
-from django_extensions.db.models import TitleDescriptionModel, TimeStampedModel
-from banking.bank_choices import TRANSACTION_TYPE_CHOICES
-from banking.constants import (
+from django_extensions.db.models import TimeStampedModel
+from banking.utils.bank_choices import TRANSACTION_TYPE_CHOICES
+from banking.utils.constants import (
     BALANCE_DEFAULT,
     BANK_ONE2ONE_CUSTOMER,
     TRANSACTION_FK_CUSTOMER,

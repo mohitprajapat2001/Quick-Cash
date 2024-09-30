@@ -1,4 +1,4 @@
-from banking.constants import (
+from banking.utils.constants import (
     DEBIT,
     DEBIT_TEXT,
     CREDIT,
